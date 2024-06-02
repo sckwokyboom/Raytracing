@@ -18,7 +18,7 @@ class RenderController(
         Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()).asCoroutineDispatcher()
     private var lastRepaintTime = 0L
 
-    private var useWireframe: Boolean = true
+    private var useWireframe: Boolean = false
 
     private var pixelsRendered: Int = 0
 
@@ -58,7 +58,6 @@ class RenderController(
                 Pair(j, i)
             }
         }
-//            .shuffled()
 
         renderJob = CoroutineScope(renderDispatcher).launch {
             pixels.chunked(batchSize).forEach { batch ->
@@ -136,5 +135,4 @@ class RenderController(
     override fun close() {
         renderDispatcher.close()
     }
-
 }
