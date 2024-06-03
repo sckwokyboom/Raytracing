@@ -118,17 +118,19 @@ fun ContentView(appState: RaytracingAppState, focusRequester: FocusRequester) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(bitmap = appState.imageBitmap, contentDescription = null)
-                Text(
-                    text = "Rendering: ${(appState.progress * 100).toInt()}%",
-                    style = MaterialTheme.typography.body1,
-                    modifier = Modifier.padding(top = 8.dp)
-                )
-                LinearProgressIndicator(
-                    progress = appState.progress.toFloat(),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 8.dp)
-                )
+                if (!appState.renderController.isWireframeMode()) {
+                    Text(
+                        text = "Rendering: ${(appState.progress * 100).toInt()}%",
+                        style = MaterialTheme.typography.body1,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                    LinearProgressIndicator(
+                        progress = appState.progress.toFloat(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp)
+                    )
+                }
             }
         }
     }

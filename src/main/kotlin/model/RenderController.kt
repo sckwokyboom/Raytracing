@@ -18,12 +18,16 @@ class RenderController(
         Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()).asCoroutineDispatcher()
     private var lastRepaintTime = 0L
 
-    private var useWireframe: Boolean = false
+    private var useWireframe: Boolean = true
 
     private var pixelsRendered: Int = 0
 
     fun toggleWireframeMode() {
         useWireframe = !useWireframe
+    }
+
+    fun isWireframeMode(): Boolean {
+        return useWireframe
     }
 
     fun renderImage(
